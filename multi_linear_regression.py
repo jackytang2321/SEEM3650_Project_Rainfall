@@ -6,13 +6,13 @@ from sklearn.linear_model import LinearRegression
 from mpl_toolkits.mplot3d import Axes3D
 # from sklearn.model_selection import KFold
 
-rainfall = pd.read_csv('daily_HK_RF_ALL_AVG.csv')
-humidity = pd.read_csv('Daily_Mean_Relative_Humidity.csv')
-pressure = pd.read_csv('daily_MSLP.csv')
+rainfall = pd.read_csv('annual_mean_daily_rainfall.csv')
+sea_temp = pd.read_csv('annual_mean_sea_temperature.csv')
+carbon = pd.read_csv('annual_carbon_emissions.csv')
 
-x1 = humidity.iloc[:,1].values
-x2 = pressure.iloc[:,1].values
 y = rainfall.iloc[:,1].values
+x1 = sea_temp.iloc[:,1].values
+x2 = carbon.iloc[:,1].values
 
 # x = np.concatenate([x1.reshape(-1, 1), x2.reshape(-1, 1)], axis=1)
 
@@ -38,8 +38,8 @@ y_plane = plane_coef[0] * x1_plane + plane_coef[1] * x2_plane
 ax.plot_surface(x1_plane, x2_plane, y_plane, alpha=0.5)
 
 # Add labels and title
-ax.set_xlabel('Mean Relative Humidity (%)')
-ax.set_ylabel('Mean Pressure (hPa)')
-ax.set_zlabel('Mean Rainfall (mm)')
+ax.set_xlabel('Sea Temperature (Celsius)')
+ax.set_ylabel('Total Greenhouse Gas emissions (kilotonnes CO2-e)')
+ax.set_zlabel('Annual Mean Daily Rainfall (mm)')
 plt.title('Multiple Linear Regression')
 plt.show()
