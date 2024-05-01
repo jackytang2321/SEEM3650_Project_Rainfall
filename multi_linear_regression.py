@@ -38,17 +38,3 @@ pred_MSE = mean_squared_error(hist_y, pred_y)
 print(f'Predicted Y (2018-2022) = {pred_y}')
 print(f'History Data of Y (2018-2022) = {hist_y}')
 print(f'Predicted Y (From LR) MSE: {pred_MSE:.5f}')
-
-# Create 3d-graph
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.scatter(x1, x2, y)
-plane_coef, _, _, _ = np.linalg.lstsq(x, y, rcond=None)
-x1_plane, x2_plane = np.meshgrid(x1, x2)
-y_plane = plane_coef[0] * x1_plane + plane_coef[1] * x2_plane
-ax.plot_surface(x1_plane, x2_plane, y_plane, alpha=0.5)
-ax.set_xlabel('Sea Temperature (Celsius)')
-ax.set_ylabel('Total Greenhouse Gas emissions\n(kilotonnes CO2-e)')
-ax.set_zlabel('Annual Mean Daily Rainfall (mm)')
-plt.title('Multiple Linear Regression')
-plt.show()
