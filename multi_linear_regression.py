@@ -8,10 +8,13 @@ from sklearn.metrics import mean_squared_error
 rainfall = pd.read_csv('annual_mean_daily_rainfall.csv')
 sea_temp = pd.read_csv('annual_mean_sea_temperature.csv')
 carbon = pd.read_csv('annual_carbon_emissions.csv')
-y = rainfall.iloc[:25, 1].values
-x1 = sea_temp.iloc[:25, 1].values
-x2 = carbon.iloc[:25, 1].values
-x = np.vstack([x1, x2]).T
+
+data = {'x1': sea_temp.iloc[:25, 1].values,
+        'x2': carbon.iloc[:25, 1].values,
+        'y': rainfall.iloc[:25, 1].values}
+df = pd.DataFrame(data)
+x = np.array(df[['x1', 'x2']])
+y = np.array(df['y'])
 
 # KFold
 LR = LinearRegression(fit_intercept=False)
