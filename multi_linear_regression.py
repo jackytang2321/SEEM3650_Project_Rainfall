@@ -11,9 +11,9 @@ carbon = pd.read_csv('annual_carbon_emissions.csv')
 y = rainfall.iloc[:25, 1].values
 x1 = sea_temp.iloc[:25, 1].values
 x2 = carbon.iloc[:25, 1].values
+x = np.vstack([x1, x2]).T
 
 # KFold
-x = np.vstack([x1, x2]).T
 LR = LinearRegression(fit_intercept=False)
 kcv = KFold(n_splits=5, random_state=60, shuffle=True)
 MSE = []
