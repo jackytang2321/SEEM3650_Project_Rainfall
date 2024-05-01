@@ -9,9 +9,9 @@ carbon = pd.read_csv('annual_carbon_emissions.csv')
 y = rainfall.iloc[:25, 1].values
 x1 = sea_temp.iloc[:25, 1].values
 x2 = carbon.iloc[:25, 1].values
+x = np.vstack([x1, x2]).T
 
 # Create 3d-graph
-x = np.vstack([x1, x2]).T
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.scatter(x1, x2, y)
