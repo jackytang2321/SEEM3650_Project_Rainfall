@@ -1,3 +1,4 @@
+from math import sqrt
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -5,39 +6,50 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import KFold
 from sklearn.metrics import mean_squared_error
 
-rainfall = pd.read_csv('annual_mean_daily_rainfall.csv')
+rainfall = pd.read_csv('annual_mean_rainfall.csv')
 sea_temp = pd.read_csv('annual_mean_sea_temperature.csv')
 carbon = pd.read_csv('annual_carbon_emissions.csv')
+pressure = pd.read_csv('annual_mean_pressure.csv')
+humidity = pd.read_csv('annual_mean_relative_humidity.csv')
+temperature = pd.read_csv('annual_mean_temperature.csv')
 
-data = {'x1': sea_temp.iloc[:25, 1].values,
+data = {'y': rainfall.iloc[:25, 1].values,
+        'x1': sea_temp.iloc[:25, 1].values,
         'x2': carbon.iloc[:25, 1].values,
-        'y': rainfall.iloc[:25, 1].values}
+        'x3': pressure.iloc[:25, 1].values,
+        'x4': humidity.iloc[:25, 1].values,
+        'x5': temperature.iloc[:25, 1].values}
 df = pd.DataFrame(data)
-x = np.array(df[['x1', 'x2']])
+x = np.array(df[['x1', 'x2', 'x3', 'x4', 'x5']])
 y = np.array(df['y'])
 
 # KFold
-LR = LinearRegression(fit_intercept=False, )
-kcv = KFold(random_state=60, shuffle=True)
-MSE = []
+LR = LinearRegression(fit_intercept=False)
+kcv = KFold(n_splits=5, random_state=60, shuffle=True)
+RMSE = []
 for train_index, test_index in kcv.split(x):
     x_train, x_test = x[train_index], x[test_index]
     y_train, y_test = y[train_index], y[test_index]
     LR.fit(x_train, y_train)
-    print(f'{y_test} and {np.round(LR.predict(x_test), 2)}')
-    MSE.append(mean_squared_error(y_test, np.round(LR.predict(x_test), 2)))
-print(f'Multi-Linear Regression MSE: {np.mean(MSE):.5f}')
+    RMSE.append(sqrt(mean_squared_error(y_test, np.round(LR.predict(x_test), 2))))
+print(f'Multi-Linear Regression RMSE: {np.mean(RMSE):.5f}')
 
 # Prediction
-hist_y = rainfall.iloc[25:, 1].values
-new_x1 = sea_temp.iloc[25:, 1].values
-new_x2 = carbon.iloc[25:, 1].values
-new_x = np.vstack([new_x1, new_x2]).T
+new_data = {'hist_y': rainfall.iloc[25:, 1].values,
+            'new_x1': sea_temp.iloc[25:, 1].values,
+            'new_x2': carbon.iloc[25:, 1].values,
+            'new_x3': pressure.iloc[25:, 1].values,
+            'new_x4': humidity.iloc[25:, 1].values,
+            'new_x5': temperature.iloc[25:, 1].values}
+new_df = pd.DataFrame(new_data)
+new_x = np.array(new_df[['new_x1', 'new_x2', 'new_x3', 'new_x4', 'new_x5']])
+hist_y = np.array(new_df['hist_y'])
 pred_y = []
+LR.fit(x, y)
 for i in range(5):
     pred = LR.predict(new_x[i, :].reshape(1, -1))
     pred_y.append(round(pred[0], 2))
-pred_MSE = mean_squared_error(hist_y, pred_y)
-print(f'Predicted Y (2018-2022) = {pred_y}')
+pred_RMSE = sqrt(mean_squared_error(hist_y, pred_y))
 print(f'History Data of Y (2018-2022) = {hist_y}')
-print(f'Predicted Y (From LR) MSE: {pred_MSE:.5f}')
+print(f'Predicted Y (2018-2022) = {pred_y}')
+print(f'Predicted Y (From LR) RMSE: {pred_RMSE:.5f}')
