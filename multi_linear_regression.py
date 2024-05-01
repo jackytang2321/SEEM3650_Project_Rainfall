@@ -17,16 +17,16 @@ x = np.array(df[['x1', 'x2']])
 y = np.array(df['y'])
 
 # KFold
-LR = LinearRegression(fit_intercept=False)
-kcv = KFold(n_splits=5, random_state=60, shuffle=True)
+LR = LinearRegression(fit_intercept=False, )
+kcv = KFold(random_state=60, shuffle=True)
 MSE = []
 for train_index, test_index in kcv.split(x):
-    X_train, X_test = x[train_index], x[test_index]
+    x_train, x_test = x[train_index], x[test_index]
     y_train, y_test = y[train_index], y[test_index]
-    LR.fit(X_train, y_train)
-    MSE.append(mean_squared_error(y_test, LR.predict(X_test)))
-print(f'Multi-Linear Regression MSE: {np.mean(MSE):.5f}' + \
-      f', STD: {np.std(MSE):.5f}')
+    LR.fit(x_train, y_train)
+    print(f'{y_test} and {np.round(LR.predict(x_test), 2)}')
+    MSE.append(mean_squared_error(y_test, np.round(LR.predict(x_test), 2)))
+print(f'Multi-Linear Regression MSE: {np.mean(MSE):.5f}')
 
 # Prediction
 hist_y = rainfall.iloc[25:, 1].values
