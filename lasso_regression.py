@@ -18,9 +18,9 @@ data = {'y': rainfall.iloc[:25, 1].values,
         'x2': carbon.iloc[:25, 1].values,
         'x3': pressure.iloc[:25, 1].values,
         'x4': humidity.iloc[:25, 1].values,
-        'x5': temperature.iloc[25:, 1].values}
+        'x5': temperature.iloc[:25, 1].values}
 df = pd.DataFrame(data)
-x = np.array(df[['x1', 'x2', 'x3', 'x4']])
+x = np.array(df[['x1', 'x2', 'x3', 'x4', 'x5']])
 y = np.array(df['y'])
 
 alpha_ridge = [1e-15, 1e-10, 1e-5, 1e-2, 1, 5, 15, 50]
