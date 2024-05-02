@@ -21,12 +21,12 @@ df = pd.DataFrame(data)
 x = np.array(df[['x1', 'x2', 'x3', 'x4']])
 y = np.array(df['y'])
 
-alpha_lasso = [1e-15, 1e-10, 1e-5, 1e-2, 1, 5, 15, 50]
+alpha_lasso = [1e-8, 1e-4, 1e-2, 1, 5, 15, 50, 200]
 
 # KFold
 for i in range(len(alpha_lasso)):
     LS = Lasso(alpha=alpha_lasso[i])
-    kcv = KFold(n_splits=3, random_state=60, shuffle=True)
+    kcv = KFold(n_splits=3, random_state=21, shuffle=True)
     RMSE = []
     R2 = []
     for train_index, test_index in kcv.split(x):
