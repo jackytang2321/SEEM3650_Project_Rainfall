@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import QuantileTransformer
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.compose import TransformedTargetRegressor
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -44,6 +44,8 @@ ttr = TransformedTargetRegressor(regressor=rfr, transformer=qt)
 ttr.fit(x_train, y_train)
 y_pred = ttr.predict(x_test)
 r2 = r2_score(y_test, y_pred)
+mae = mean_absolute_error(y_test, y_pred)
 rmse = sqrt(mean_squared_error(y_test, y_pred))
 print(f'R-squared Score: {r2:.4}')
+print(f'MAE: {mae:.2f}')
 print(f'RMSE: {rmse:.2f}')
