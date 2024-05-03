@@ -43,11 +43,11 @@ x = pred_df[['carbon', 'pressure', 'humidity', 'temperature']]
 y = pred_df[['rainfall']]
 y_base_pred = LR.predict(x)
 r2 = r2_score(y, y_base_pred)
-mae = mean_absolute_error(y, y_base_pred)
 rmse = sqrt(mean_squared_error(y, y_base_pred))
+mae = mean_absolute_error(y, y_base_pred)
 print(f'R-squared Score: {r2:.4}')
-print(f'MAE: {mae:.2f}')
 print(f'RMSE: {rmse:.2f}')
+print(f'MAE: {mae:.2f}')
 print(f'Real Mean Rainfall: {np.mean(y):.2f}')
 print(f'Predicted Mean Rainfall: {np.mean(y_base_pred):.2f}')
 print('')
@@ -64,11 +64,11 @@ x = pred_df[['carbon', 'pressure', 'humidity', 'temperature']]
 y = pred_df[['rainfall']]
 y_pred = LR.predict(x)
 r2 = r2_score(y, y_pred)
-mae = mean_absolute_error(y, y_pred)
 rmse = sqrt(mean_squared_error(y, y_pred))
+mae = mean_absolute_error(y, y_pred)
 print(f'R-squared Score: {r2:.4}')
-print(f'MAE: {mae:.2f}')
 print(f'RMSE: {rmse:.2f}')
+print(f'MAE: {mae:.2f}')
 print(f'Predicted Mean Rainfall: {np.mean(y_pred):.2f}')
 diff = (np.mean(y_pred) - np.mean(y_base_pred))/np.mean(y_base_pred) * 100
 print(f'Under this scenario, Predicted rainfall change by {diff:.2f}%')
@@ -86,11 +86,11 @@ x = pred_df[['carbon', 'pressure', 'humidity', 'temperature']]
 y = pred_df[['rainfall']]
 y_pred = LR.predict(x)
 r2 = r2_score(y, y_pred)
-mae = mean_absolute_error(y, y_pred)
 rmse = sqrt(mean_squared_error(y, y_pred))
+mae = mean_absolute_error(y, y_pred)
 print(f'R-squared Score: {r2:.4}')
-print(f'MAE: {mae:.2f}')
 print(f'RMSE: {rmse:.2f}')
+print(f'MAE: {mae:.2f}')
 print(f'Predicted Mean Rainfall: {np.mean(y_pred):.2f}')
 diff = (np.mean(y_pred) - np.mean(y_base_pred))/np.mean(y_base_pred) * 100
 print(f'Under this scenario, Predicted rainfall change by {diff:.2f}%')
@@ -108,11 +108,11 @@ x = pred_df[['carbon', 'pressure', 'humidity', 'temperature']]
 y = pred_df[['rainfall']]
 y_pred = LR.predict(x)
 r2 = r2_score(y, y_pred)
-mae = mean_absolute_error(y, y_pred)
 rmse = sqrt(mean_squared_error(y, y_pred))
+mae = mean_absolute_error(y, y_pred)
 print(f'R-squared Score: {r2:.4}')
-print(f'MAE: {mae:.2f}')
 print(f'RMSE: {rmse:.2f}')
+print(f'MAE: {mae:.2f}')
 print(f'Predicted Mean Rainfall: {np.mean(y_pred):.2f}')
 diff = (np.mean(y_pred) - np.mean(y_base_pred))/np.mean(y_base_pred) * 100
 print(f'Under this scenario, Predicted rainfall change by {diff:.2f}%')
@@ -130,11 +130,11 @@ x = pred_df[['carbon', 'pressure', 'humidity', 'temperature']]
 y = pred_df[['rainfall']]
 y_pred = LR.predict(x)
 r2 = r2_score(y, y_pred)
-mae = mean_absolute_error(y, y_pred)
 rmse = sqrt(mean_squared_error(y, y_pred))
+mae = mean_absolute_error(y, y_pred)
 print(f'R-squared Score: {r2:.4}')
-print(f'MAE: {mae:.2f}')
 print(f'RMSE: {rmse:.2f}')
+print(f'MAE: {mae:.2f}')
 print(f'Predicted Mean Rainfall: {np.mean(y_pred):.2f}')
 diff = (np.mean(y_pred) - np.mean(y_base_pred))/np.mean(y_base_pred) * 100
 print(f'Under this scenario, Predicted rainfall change by {diff:.2f}%')
@@ -152,11 +152,11 @@ x = pred_df[['carbon', 'pressure', 'humidity', 'temperature']]
 y = pred_df[['rainfall']]
 y_pred = LR.predict(x)
 r2 = r2_score(y, y_pred)
-mae = mean_absolute_error(y, y_pred)
 rmse = sqrt(mean_squared_error(y, y_pred))
+mae = mean_absolute_error(y, y_pred)
 print(f'R-squared Score: {r2:.4}')
-print(f'MAE: {mae:.2f}')
 print(f'RMSE: {rmse:.2f}')
+print(f'MAE: {mae:.2f}')
 print(f'Predicted Mean Rainfall: {np.mean(y_pred):.2f}')
 diff = (np.mean(y_pred) - np.mean(y_base_pred))/np.mean(y_base_pred) * 100
 print(f'Under this scenario, Predicted rainfall change by {diff:.2f}%')
