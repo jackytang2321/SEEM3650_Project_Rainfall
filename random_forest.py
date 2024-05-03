@@ -34,7 +34,7 @@ for i in range(1, len(x_train)+1):
     if max_r2 <= r2:
         max_r2 = r2
         max_n = i
-print(f'Optimal n_quantiles: {max_n}')
+print(f'Optimal n_quantiles: {max_n}') # Optimal n_quantiles = 3
 
 # Random Forest Regression
 print(f'Result of Random Forest Regression')
