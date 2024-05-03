@@ -3,7 +3,7 @@ import pandas as pd
 from numpy import sqrt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import Lasso, LassoCV
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 from sklearn.exceptions import ConvergenceWarning
 
 import warnings
@@ -33,6 +33,8 @@ LS = Lasso(alpha=optimal_alpha, fit_intercept=False)
 LS.fit(x_train, y_train)
 y_pred = LS.predict(x_test)
 r2 = r2_score(y_test, y_pred)
+mae = mean_absolute_error(y_test, y_pred)
 rmse = sqrt(mean_squared_error(y_test, y_pred))
 print(f'R-squared Score: {r2:.4}')
+print(f'MAE: {mae:.2f}')
 print(f'RMSE: {rmse:.2f}')
