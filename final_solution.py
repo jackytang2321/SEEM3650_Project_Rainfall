@@ -145,7 +145,7 @@ print(f'Under this scenario, Predicted rainfall change by {diff:.2f}%')
 print('')
 
 # Climate Action Plan 2030+ Scenario 2 (Carbon Emission -35%)
-print('Climate Action Plan 2030+ Scenario 1 (Carbon Emission -25%):')
+print('Climate Action Plan 2030+ Scenario 2 (Carbon Emission -35%):')
 pred_data6 = {'rainfall': prediction_data.iloc[56:66, 1].values,
         'carbon': prediction_data.iloc[56:66, 2].values,
         'pressure': prediction_data.iloc[56:66, 3].values,
